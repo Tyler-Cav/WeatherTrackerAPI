@@ -67,11 +67,11 @@ function handleSubmitAction(e) {
         //TODO: take the city value and make local storage here to append to button list.
         //TODO: fix this loop, I need to check if the searched item already exists within the buttons somehow.
         //  for (let i = 0; i < searchedCitiesArray.length; i++) {
-        //      if (searchedCitiesArray[i] != city) {
+                // if (searchedCitiesArray[i] != city 
                 let historyListEl = document.querySelector("#historyTracker")
                 let newBtn = document.createElement("button")
                 newBtn.setAttribute('type', 'button')
-                newBtn.setAttribute('class',"list-group-item list-group-item-action" )
+                newBtn.setAttribute('class',"list-group-item list-group-item-action m-1" )
                 historyListEl.append(newBtn)
                 newBtn.textContent = city
                 searchedCitiesArray.push(city)
@@ -101,7 +101,6 @@ function fetchWeather (city) {
             return response.json()
         }).then(function(data) {
             console.log(data)
-            
         })
     })
 }
