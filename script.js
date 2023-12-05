@@ -2,9 +2,6 @@
 let selectedCityTitle = document.querySelector("#currentSelectedCity")
 selectedCityTitle.textContent = ("Today's Date: ") + dayjs().format('M/D/YYYY') 
 
-let dateTest = dayjs(1).format('D')
-console.log(dateTest)
-
 // *CURRENT WEATHER SECTION
 // currenWeatherListEL used for appending later into the unordered list for current weather info
 const currentWeatherListEl = document.querySelector("#currentWeatherList")
@@ -46,8 +43,6 @@ nextDayHumidity.textContent = "Current Humidity:"
 
 
 const apiKey = "64205da5f805a7fb413caa37e89fd954"
-// const weatherAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
-
 
 //allows text to stay and not disappear since submit buttons typically erase all content after submit has been actioned
 function handleSubmitAction(e) {
@@ -69,7 +64,7 @@ function fetchWeather (city) {
     }) .then(function(data) {
             console.log(data)
             console.log(data.main.temp)
-            selectedCityTitle.textContent = data.name + " " + dayjs().format("M/d/YYYY") 
+            selectedCityTitle.textContent = data.name + ": " + dayjs().format('M/D/YYYY')  
             currentTempEL.textContent = "Current Temp: " + Math.round(data.main.temp) + "ºF"
             currentWindEl.textContent = "Current Wind: " + data.wind.speed + " MPH"
             currentHumidityEl.textContent = "Current Humidity: " + data.main.humidity + "%"

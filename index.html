@@ -23,15 +23,24 @@ THEN I am again presented with current and future conditions for that city -->
         <h1 class="text-center border-bottom border-3">Weather Dashboard</h1>
     </header>
     <main>
-        <form id="submitCityQuery">
-            <div class="form-row row">
-            <div class="mb-3 mt-3">
-                <label>Choose Your City</label> 
-                    <!--form control class making width go 100% and can't adjust with col -->
-                    <input type="text" class="form-control border-primary w-25" id="cityText"placeholder="Example: Philadelphia">
-            <button class="btn btn-primary mt-3" type="submit">Search</button>
-        </form>
-
+        <aside class="column">
+            <form id="submitCityQuery">
+                <div class="form-row row">
+                <div class="mb-3 mt-3">
+                    <label>Choose Your City</label> 
+                        <!--form control class making width go 100% and can't adjust with col -->
+                        <input type="text" class="form-control border-primary w-25" id="cityText"placeholder="Example: Philadelphia">
+                <button class="btn btn-primary mt-3" type="submit">Search</button>
+            </form>
+            <div class="list-group w-25">
+                <button type="button" class="list-group-item list-group-item-action active">
+                    Placeholder
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                    Placeholder
+                </button>
+              </div>
+        </aside>
         <!--TODO:Current Weather. Debating to create entire section dynamically but leaving to view layout -->
         <div>
             <section class="container col-6 border border-3 p-1 mt-3">
