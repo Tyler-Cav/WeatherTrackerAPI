@@ -1,0 +1,9 @@
+body {
+    background-image: linear-gradient(225deg, #FA8072 3%, #ebb29c 50%, IndianRed 100%);
+    min-height: 100vh;
+  }
+
+  li {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
