@@ -80,6 +80,7 @@ function handleSubmitAction(e) {
         }   
 //     }
 // }        //localStorage.setItem("city", city)
+const apiKey = `64205da5f805a7fb413caa37e89fd954`
 
 function fetchWeather (city) {
     const currentWeather = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`
