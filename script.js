@@ -51,7 +51,7 @@ searchedCitiesArray.forEach(function(cityBtn) {
 })        
 //TODO: Create a function here to pull the local storage if page is refreshed.
 
-const apiKey = "64205da5f805a7fb413caa37e89fd954"
+
 
 //allows text to stay and not disappear since submit buttons typically erase all content after submit has been actioned
 function handleSubmitAction(e) {
@@ -66,19 +66,20 @@ function handleSubmitAction(e) {
         fetchWeather(city)
         //TODO: take the city value and make local storage here to append to button list.
         //TODO: fix this loop, I need to check if the searched item already exists within the buttons somehow.
-        // for (let i = 0; i < searchedCitiesArray.length; i++) {
-        //     if (searchedCitiesArray[i] !== city)
-        let historyListEl = document.querySelector("#historyTracker")
-        let newBtn = document.createElement("button")
-        newBtn.setAttribute('type', 'button')
-        newBtn.setAttribute('class',"list-group-item list-group-item-action" )
-        historyListEl.append(newBtn)
-        newBtn.textContent = city
-        searchedCitiesArray.push(city)
-        console.log(searchedCitiesArray)
-    }
-}   
-        //localStorage.setItem("city", city)
+        //  for (let i = 0; i < searchedCitiesArray.length; i++) {
+        //      if (searchedCitiesArray[i] != city) {
+                let historyListEl = document.querySelector("#historyTracker")
+                let newBtn = document.createElement("button")
+                newBtn.setAttribute('type', 'button')
+                newBtn.setAttribute('class',"list-group-item list-group-item-action" )
+                historyListEl.append(newBtn)
+                newBtn.textContent = city
+                searchedCitiesArray.push(city)
+                console.log(searchedCitiesArray)
+            } 
+        }   
+//     }
+// }        //localStorage.setItem("city", city)
 
 function fetchWeather (city) {
     const currentWeather = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=${city}&units=imperial`
