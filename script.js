@@ -1,3 +1,24 @@
+// currenWeatherListEL used for appending later into the unordered list
+const currentWeatherListEl = document.querySelector("#currentWeatherList")
+// li's will be used to append onto currentweather list for info on current weather
+let ListEl = document.createElement("li")
+// selectedCity is what will be in the title of the city that was selected
+let selectedCityTitle = document.querySelector("#currentSelectedCity")
+//5-Day Forecast Header that will be used as the parent to the li children weather info
+let fiveDayEl = document.querySelector("#fiveDay")
+    fiveDayEl.textContent = "5-Day Forecast:"
+
+// li's needed for both current weather and five day forecast
+//Include the date before a city is selected, but update text content after a city is selected
+    selectedCityTitle.textContent = "City selected and Date"
+    currentTempEL = currentWeatherListEl.append(ListEl.textContent = " test ")
+    currentWindEl = currentWeatherListEl.append(ListEl.textContent = " test ")
+    currentHumidityEl = currentWeatherListEl.append(ListEl.textContent = " test ")
+
+// li's needed for 5-Day Forecast
+
+
+
 const apiKey = "64205da5f805a7fb413caa37e89fd954"
 // const weatherAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`
 
@@ -31,8 +52,8 @@ function fetchWeather (city) {
     })
 }
 //below is current weather for the emoji icons
-var iconUrl = src=`https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-document.
+// var iconUrl = src=`https://openweathermap.org/img/w/${data}.weather[0].icon}.png`;
+
 
 //selecting the form
 document.querySelector("#submitCityQuery").addEventListener("submit", handleSubmitAction)
