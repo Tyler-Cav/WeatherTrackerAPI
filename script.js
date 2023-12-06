@@ -9,10 +9,12 @@ const currentWeatherListEl = document.querySelector("#currentWeatherList")
 let currentTempEL = document.createElement("li")
 let currentWindEl = document.createElement("li")
 let currentHumidityEl = document.createElement("li")
+let currentIconEl = document.createElement("img")
 
 currentWeatherListEl.append(currentTempEL)
 currentWeatherListEl.append(currentWindEl)
 currentWeatherListEl.append(currentHumidityEl)
+currentWeatherListEl.append(currentIconEl)
 
 currentTempEL.textContent = "Temp: "
 currentWindEl.textContent = "Wind: "
@@ -29,15 +31,10 @@ let dayTwoIDEl = document.querySelector("#dayTwoID")
 let dayThreeIDEl = document.querySelector("#dayThreeID")
 let dayFourIDEl = document.querySelector("#dayFourID")
 let dayFiveIDEl = document.querySelector("#dayFiveID")
+let groupedForecastListEl = document.querySelector("#groupedFiveDay")
 
 //*Calling the array within the API fetch to loop over adding boxes for each day
 let fiveDayArray = [dayOneIDEl, dayTwoIDEl, dayThreeIDEl, dayFourIDEl, dayFiveIDEl]
-
-
-// Figure out how to loop this so each day doesn't need variables
-
- 
-//TODO: Create a function here to pull the local storage if page is refreshed.
 
 
 
@@ -55,17 +52,19 @@ function handleSubmitAction(e) {
         //TODO: fix this loop, I need to check if the searched item already exists within the buttons somehow.
                 let historyListEl = document.querySelector("#historyTracker")
                 let newBtn = document.createElement("button")
+                let historyArray = []
                 newBtn.setAttribute('type', 'button')
                 newBtn.setAttribute('class',"list-group-item list-group-item-action m-1" )
                 historyListEl.append(newBtn)
                 newBtn.textContent = city
+                historyArray.push(newBtn)
+                console.log(historyArray)
                 newBtn.addEventListener("click", function() {
                     fetchWeather(city)
                 })
             } 
         }   
-//     }
-// }        //localStorage.setItem("city", city)
+
 const apiKey = `64205da5f805a7fb413caa37e89fd954`
 
 function fetchWeather (city) {
@@ -83,8 +82,10 @@ function fetchWeather (city) {
             currentTempEL.textContent = "Current Temp: " + Math.round(data.main.temp) + "ºF"
             currentWindEl.textContent = "Current Wind: " + data.wind.speed + " MPH"
             currentHumidityEl.textContent = "Current Humidity: " + data.main.humidity + "%"
-        
-        const {lat,lon} = data.coord
+            currentIconEl.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+            currentIconEl.classList.add('bg-primary', 'border', 'rounded')
+            console.log(currentIconEl)
+            const {lat,lon} = data.coord
         const weatherAPI = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
         fetch(weatherAPI).then(function(response) {
             console.log(response)
@@ -97,19 +98,26 @@ function fetchWeather (city) {
             let dayFourCounter = 34
             let dayFiveCounter = 39
             countArray = [dayOneCounter, dayTwoCounter, dayThreeCounter, dayFourCounter, dayFiveCounter]
-            for (let i = 0; i < 5; i++) {        
+            for (let i = 0; i < 5; i++) {
+                groupedForecastListEl.classList.remove("d-none")
+                fiveDayArray[i].textContent = " "
                 let nextDayDate = document.createElement("h5")
+                let weatherIcon = document.createElement("img")
                 let nextDayTemp = document.createElement("li")
                 let nextDayWind = document.createElement("li")
                 let nextDayHumidity = document.createElement("li")  
                 fiveDayArray[i].append(nextDayDate)
+                fiveDayArray[i].append(weatherIcon)
                 fiveDayArray[i].append(nextDayTemp)
                 fiveDayArray[i].append(nextDayWind)
                 fiveDayArray[i].append(nextDayHumidity)
-                nextDayDate.textContent = data.list[countArray[i]].dt_txt
-                nextDayTemp.textContent = "Current Temp: " + Math.round(data.list[countArray[i]].main.temp) + "ºF"
-                nextDayWind.textContent = "Current Wind: " + data.list[countArray[i]].wind.speed + "MPH"
-                nextDayHumidity.textContent = "Current Humidity: " + data.list[countArray[i]].main.humidity + "%"
+                var unixDate = dayjs.unix(data.list[countArray[i]].dt)
+                nextDayDate.textContent = (unixDate.format('MMMM D')) + ":"
+                console.log(nextDayDate)
+                nextDayTemp.textContent = "Est. Temp: " + Math.round(data.list[countArray[i]].main.temp) + "ºF"
+                nextDayWind.textContent = "Est. Wind: " + data.list[countArray[i]].wind.speed + "MPH"
+                nextDayHumidity.textContent = "Est. Humidity: " + data.list[countArray[i]].main.humidity + "%"
+                weatherIcon.src = `https://openweathermap.org/img/w/${data.list[countArray[i]].weather[0].icon}.png`
             }
         })
     })
