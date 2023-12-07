@@ -92,11 +92,11 @@ function fetchWeather (city) {
             return response.json()
         }).then(function(data) {
             console.log(data)
-            let dayOneCounter = 10
-            let dayTwoCounter = 18
-            let dayThreeCounter = 26
-            let dayFourCounter = 34
-            let dayFiveCounter = 39
+            let dayOneCounter = 3
+            let dayTwoCounter = 11
+            let dayThreeCounter = 19
+            let dayFourCounter = 27
+            let dayFiveCounter = 35
             countArray = [dayOneCounter, dayTwoCounter, dayThreeCounter, dayFourCounter, dayFiveCounter]
             for (let i = 0; i < 5; i++) {
                 groupedForecastListEl.classList.remove("d-none")
@@ -117,23 +117,13 @@ function fetchWeather (city) {
                 nextDayTemp.textContent = "Est. Temp: " + Math.round(data.list[countArray[i]].main.temp) + "ºF"
                 nextDayWind.textContent = "Est. Wind: " + data.list[countArray[i]].wind.speed + "MPH"
                 nextDayHumidity.textContent = "Est. Humidity: " + data.list[countArray[i]].main.humidity + "%"
+                weatherIcon.classList.add('bg-primary', 'border', 'rounded')
                 weatherIcon.src = `https://openweathermap.org/img/w/${data.list[countArray[i]].weather[0].icon}.png`
             }
         })
     })
 }
-//below is current weather for the emoji icons
-// var iconUrl = src=`https://openweathermap.org/img/w/${data}.weather[0].icon}.png`;
 
 //selecting the form
 document.querySelector("#submitCityQuery").addEventListener("submit", handleSubmitAction)
 
-
-
-
-
-/* PseudoCode
-    #What do I only give a shit about?
-        *Looping over each days Date, Temp, Wind, and Humidity
-        *Create a loop using the array of the API given
-*/
