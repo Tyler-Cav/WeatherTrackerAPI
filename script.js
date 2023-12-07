@@ -42,14 +42,11 @@ let fiveDayArray = [dayOneIDEl, dayTwoIDEl, dayThreeIDEl, dayFourIDEl, dayFiveID
 function handleSubmitAction(e) {
     e.preventDefault()
     let city = document.querySelector("#cityText").value.trim()
-    //TODO: Figure out how to make an || statement in line 61, need it to return nothing if API 404's.
     if (city === "") {
         return
     }
     else {
         fetchWeather(city)
-        //TODO: take the city value and make local storage here to append to button list.
-        //TODO: fix this loop, I need to check if the searched item already exists within the buttons somehow.
                 let historyListEl = document.querySelector("#historyTracker")
                 let newBtn = document.createElement("button")
                 let historyArray = []
